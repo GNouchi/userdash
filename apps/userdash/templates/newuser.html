@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <title>Document</title>
+    <style>
+   .jumbo{
+        padding-top:50px;
+        padding-left:125px;
+        width: 500px;
+        }
+    button{
+        margin-top: 25px;
+    }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class ="container-fluid">
+        <ul class="navbar-nav ">
+        <li class="nav-item active">
+            <h4>Test App</h4>
+        </li>
+        <li class="nav-link active">
+            (admins only)
+        </li>
+        </ul>
+        <div>
+            <a class="btn btn-dark" href="/dashboard">Dashboard</a>
+            <a class="btn btn-danger" href="/logout">Logout</a>
+        </div>
+    </div>
+</nav>  
+<div class ="container-fluid main ">
+        <div class = "jumbo">
+        <form action="adminusercreate" method="post">
+            {% csrf_token %}
+            <h4>Register a user</h4>
+            <div class= "form-group">
+                <input type="text" name= "email" class="form-control" placeholder="Email">
+                    <input type="text" name= "first_name" class="form-control" placeholder="First Name">
+                    <input type="text" name= "last_name" class="form-control" placeholder="Last Name">
+            </div>
+            <div class= "form-group">
+                <input type="password" name= "password" class="form-control" placeholder="Password">
+                <input type="password" name= "confirm_password" class="form-control" placeholder="Confirm Password">
+                <button type = "submit" class="btn btn-success col-sm-4 offset-sm-8"> Register! </button>
+            </div>
+        </form>
+    </div>
+        <!-- errorbox -->
+        <div class = "errorbox">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+              </div>
+      <!-- /errorbox -->
+    </div>
+
+</body>
+</html>
